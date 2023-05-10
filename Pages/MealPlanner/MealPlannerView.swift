@@ -222,7 +222,6 @@ extension MealPlannerView {
                            .foregroundColor(Color.appGrayOne)
                        Spacer()
                    }
-        
                }
                Spacer()
            }
