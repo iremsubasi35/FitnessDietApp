@@ -33,6 +33,7 @@ extension BreakfastCategoryView {
             searchView
             categoryView
             recommendationForDietView
+            popularView
         }
         .padding(.top, 30)
     }
@@ -174,6 +175,63 @@ extension BreakfastCategoryView{
             }
         }
         .frame(width: 200,height: 240)
+    }
+}
+
+// MARK: - Popular
+extension BreakfastCategoryView{
+    @ViewBuilder
+    private var popularView: some View {
+        if let presentation = viewModel.popularViewPresentation{
+            VStack{
+                HStack{
+                    Text(presentation.title)
+                        .font(Font.semiBoldFont(16))
+                        .foregroundColor(Color.appBlackColor)
+                }
+                .padding(.bottom, 18)
+                
+                VStack(spacing: 15) {
+                    ForEach(presentation.items) { item in
+                        popularItemView(item)
+                            .shadow(color:Color.appBlackColor.opacity(0.07),radius: 40, x: 0, y:10)
+                    }
+                }
+            }
+            .padding(.horizontal,30)
+        } else {
+            EmptyView()
+        }
+    }
+    
+    @ViewBuilder
+    private func popularItemView(_ presentation: PopularItem) -> some View{
+        ZStack{
+            RoundedRectangle(cornerRadius: 16)
+               .foregroundColor(.white)
+            HStack{
+                Image(presentation.image)
+                    .resizable()
+                    .frame(width: 90, height: 80)
+                VStack{
+                    HStack{
+                        Text(presentation.title)
+                            .font(Font.mediumFont(14))
+                            .foregroundColor(Color.appBlackColor)
+                        Spacer()
+                    }
+                    HStack {
+                        Text("\(presentation.difficulty) | \(presentation.time)mins | \(presentation.calorie)kCal")
+                            .font(Font.regularFont(12))
+                            .foregroundColor(Color.appGrayOne)
+                        Spacer()
+                    }
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 30)
+        }
+       // .frame(minHeight: 80)
     }
 }
 

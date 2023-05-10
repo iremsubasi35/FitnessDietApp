@@ -67,12 +67,39 @@ extension DietsViewPresentation {
     }()
 }
 
+// MARK: - PopularPresentation
+
+struct PopularItem: Identifiable {
+    let id: UUID = .init()
+    let itemId: Int
+    let title: String
+    let difficulty: String
+    let time: Int
+    let calorie: Int
+    let image: String
+}
+
+struct PopularViewPresentation {
+    let title: String
+    let items: [PopularItem]
+}
+
+extension PopularViewPresentation {
+    static let fakeData: PopularViewPresentation = {
+        let items: [PopularItem] = [
+            .init(itemId: 1, title: "Blueberry Pancake", difficulty: "Medium",time:30 ,calorie:230 , image: "pancake2"),
+            .init(itemId: 2, title: "Lowfat Milk", difficulty: "Medium",time:30 ,calorie:230, image: "nigiri 1")
+        ]
+        return .init(title: "Popular", items: items)
+    }()
+}
 // MARK: - BreakfastCategoryViewModel
 final class BreakfastCategoryViewModel: ObservableObject{
     private let router: BreakfastCategoryRouter
     
     @Published var categoriesViewPresentation: CategoriesViewPresentation?
     @Published var dietsViewPresentation: DietsViewPresentation?
+    @Published var popularViewPresentation: PopularViewPresentation?
     
     init(router: BreakfastCategoryRouter) {
         self.router = router
@@ -81,6 +108,7 @@ final class BreakfastCategoryViewModel: ObservableObject{
     func initialize() {
         categoriesViewPresentation = .fakeData
         dietsViewPresentation = .fakeData
+        popularViewPresentation = .fakeData
     }
     
 }
