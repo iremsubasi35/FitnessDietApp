@@ -18,10 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let ws = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: ws)
-        let router = MealPlannerRouter()
-        let dataController = MealPlannerDataController()
-        let viewModel = MealPlannerViewModel(router: router,dataController:dataController )
-        let view = MealPlannerView(viewModel: viewModel)
+        let router = BreakfastCategoryRouter()
+       // let dataController = MealPlannerDataController()
+        let viewModel = BreakfastCategoryViewModel(router: router)
+        let view = BreakfastCategoryView(viewModel: viewModel)
         RoutingManager.shared.initialize(with: self.window!)
         RoutingManager.shared.setRootView(view, isNavigationBarHidden: true)
         
