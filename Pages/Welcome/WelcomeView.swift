@@ -41,7 +41,6 @@ struct WelcomeView: View {
                             LinearGradient(gradient: Gradient(colors: viewModel.currentType.buttonBackgroundColor), startPoint: .trailing, endPoint: .leading)
                         )
                         .cornerRadius(.infinity)
-                        
                         .shadow(color:Color.blueShadow,radius: 99, x: 0, y:10)
                 }
                 .padding(.horizontal, 30)

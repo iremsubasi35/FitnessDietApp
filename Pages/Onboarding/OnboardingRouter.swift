@@ -16,7 +16,8 @@ final class OnboardingRouter{
     }
     func navigateToRegisterView() {
         let router = MealPlannerRouter()
-        let viewModel = MealPlannerViewModel(router: router)
+        let daatController = MealPlannerDataController()
+        let viewModel = MealPlannerViewModel(router: router, dataController: daatController)
         let view = MealPlannerView(viewModel: viewModel)
         RoutingManager.shared.push(view, isNavigationBarHidden: true)
     }

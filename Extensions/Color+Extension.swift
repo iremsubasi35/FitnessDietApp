@@ -16,4 +16,7 @@ extension Color {
     static let brandColorOne = Color("BrandColor1")
     static let brandColorTwo = Color("BrandColor2")
     static let blueShadow = Color("BlueShadow")
+    static let secondaryColorOne = Color("SecondaryColor1")
+    static let secondaryColorTwo = Color("SecondaryColor2")
 }
+

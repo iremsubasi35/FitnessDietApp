@@ -7,5 +7,8 @@
 
 import Foundation
 final class MealPlannerRouter{
-    
+    func navigateToBreakfastCategory(_ itemId: Int) {
+        print("GOTO: \(itemId)")
+    }
 }
+
