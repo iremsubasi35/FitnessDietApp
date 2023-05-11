@@ -18,5 +18,6 @@ extension Color {
     static let blueShadow = Color("BlueShadow")
     static let secondaryColorOne = Color("SecondaryColor1")
     static let secondaryColorTwo = Color("SecondaryColor2")
+    static let borderColor = Color("BorderColor")
 }
 
