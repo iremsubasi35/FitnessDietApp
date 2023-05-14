@@ -28,8 +28,8 @@ struct BreakfastViewPresentation {
 extension BreakfastViewPresentation {
     static let fakeData: BreakfastViewPresentation = {
         let items: [BreakfastItem] = [
-            .init(itemId: 1, title: "Blueberry Pancake",subtitle: "07:00am", image: "pancake2",backgroundColor: Color.brandColorOne.opacity(0.2)),
-            .init(itemId: 2, title: "Lowfat Milk", subtitle: "07:30am", image: "nigiri 1",backgroundColor: Color.secondaryColorOne.opacity(0.2))
+            .init(itemId: 1, title: "Blueberry Pancake",subtitle: "07:00am", image: "honeyPancake",backgroundColor: Color.brandColorOne.opacity(0.2)),
+            .init(itemId: 2, title: "Lowfat Milk", subtitle: "07:30am", image: "coffee",backgroundColor: Color.secondaryColorOne.opacity(0.2))
         ]
         return .init(title: "Breakfast",calorie: 230, items: items)
     }()
@@ -54,8 +54,8 @@ struct LunchViewPresentation {
 extension LunchViewPresentation {
     static let fakeData: LunchViewPresentation = {
         let items: [LunchItem] = [
-            .init(itemId: 1, title: "Blueberry Pancake",subtitle: "01:00pm", image: "pancake2",backgroundColor: Color.brandColorOne.opacity(0.2)),
-            .init(itemId: 2, title: "Lowfat Milk", subtitle: "01:20pm", image: "nigiri 1",backgroundColor: Color.secondaryColorOne.opacity(0.2))
+            .init(itemId: 1, title: "Blueberry Pancake",subtitle: "01:00pm", image: "MealPlanner-Dinner",backgroundColor: Color.brandColorOne.opacity(0.2)),
+            .init(itemId: 2, title: "Lowfat Milk", subtitle: "01:20pm", image: "glass-of-milk 1",backgroundColor: Color.secondaryColorOne.opacity(0.2))
         ]
         return .init(title: "Lunch",calorie: 500, items: items)
     }()
@@ -80,8 +80,8 @@ struct SnacksViewPresentation {
 extension SnacksViewPresentation {
     static let fakeData: SnacksViewPresentation = {
         let items: [SnacksItem] = [
-            .init(itemId: 1, title: "Blueberry Pancake",subtitle: "04:30pm", image: "pancake2",backgroundColor: Color.brandColorOne.opacity(0.2)),
-            .init(itemId: 2, title: "Lowfat Milk", subtitle: "04:40pm", image: "nigiri 1",backgroundColor: Color.secondaryColorOne.opacity(0.2))
+            .init(itemId: 1, title: "Blueberry Pancake",subtitle: "04:30pm", image: "CategorySmoothies",backgroundColor: Color.brandColorOne.opacity(0.2)),
+            .init(itemId: 2, title: "Lowfat Milk", subtitle: "04:40pm", image: "applePie",backgroundColor: Color.secondaryColorOne.opacity(0.2))
         ]
         return .init(title: "Snacks",calorie: 140, items: items)
     }()
@@ -106,13 +106,38 @@ struct DinnerViewPresentation {
 extension DinnerViewPresentation {
     static let fakeData: DinnerViewPresentation = {
         let items: [DinnerItem] = [
-            .init(itemId: 1, title: "Blueberry Pancake",subtitle: "", image: "pancake2",backgroundColor: Color.brandColorOne.opacity(0.2)),
-            .init(itemId: 2, title: "Lowfat Milk", subtitle: "", image: "nigiri 1",backgroundColor: Color.secondaryColorOne.opacity(0.2))
+            .init(itemId: 1, title: "Blueberry Pancake",subtitle: "", image: "salad",backgroundColor: Color.brandColorOne.opacity(0.2)),
+            .init(itemId: 2, title: "Lowfat Milk", subtitle: "", image: "oatmeal",backgroundColor: Color.secondaryColorOne.opacity(0.2))
         ]
         return .init(title: "Dinner",calorie: 120, items: items)
     }()
 }
+// MARK: - Process part
+struct ProcessItem: Identifiable {
+    let id: UUID = .init()
+    let itemId: Int
+    let title: String
+    let icon: String
+    let subtitle: String
+    let percent: Int
+}
 
+struct TodayMealViewPresentation {
+    let title: String
+    let items: [ProcessItem]
+}
+
+extension TodayMealViewPresentation {
+    static let fakeData: TodayMealViewPresentation = {
+        let items: [ProcessItem] = [
+            .init(itemId: 0, title: "Calories", icon: "Calories-Icon", subtitle: "320 kCal",percent: 70),
+            .init(itemId: 1, title: "Proteins", icon: "Proteins-Icon", subtitle: "300g",percent: 45),
+            .init(itemId: 2, title: "Fats", icon: "Fat-Icon", subtitle: "140g",percent: 35),
+            .init(itemId: 3, title: "Carbo", icon: "Carbo-Icon", subtitle: "140g",percent: 20)
+        ]
+        return .init(title: "Today Meal Nutritions", items: items)
+    }()
+}
 
 
 // MARK: - BreakfastCategoryViewModel
@@ -123,6 +148,7 @@ final class MealScheduleViewModel: ObservableObject{
     @Published var lunchViewPresentation: LunchViewPresentation?
     @Published var snacksViewPresentation: SnacksViewPresentation?
     @Published var dinnerViewPresentation: DinnerViewPresentation?
+    @Published var todayMealViewPresentation: TodayMealViewPresentation?
     
     init(router: MealScheduleRouter) {
         self.router = router
@@ -133,6 +159,7 @@ final class MealScheduleViewModel: ObservableObject{
         lunchViewPresentation = .fakeData
         snacksViewPresentation = .fakeData
         dinnerViewPresentation = .fakeData
+        todayMealViewPresentation = .fakeData
     }
 }
 

@@ -48,6 +48,7 @@ extension MealScheduleView{
             lunchView
             snackView
             dinnerView
+            mealNutritionsProcessView
         }
     }
 }
@@ -64,6 +65,8 @@ extension MealScheduleView {
                         .foregroundColor(Color.appBlackColor)
                     Spacer()
                     Text("\(presentation.items.count) meals | \(presentation.calorie) calories")
+                        .foregroundColor(Color.appGrayTwo)
+                        .font(Font.mediumFont(12))
                 }
                 .padding(.bottom,10)
                 VStack(spacing: 15){
@@ -135,6 +138,8 @@ extension MealScheduleView {
                         .foregroundColor(Color.appBlackColor)
                     Spacer()
                     Text("\(presentation.items.count) meals | \(presentation.calorie) calories")
+                        .foregroundColor(Color.appGrayTwo)
+                        .font(Font.mediumFont(12))
                 }
                 .padding(.bottom,10)
                 VStack(spacing: 15){
@@ -208,6 +213,8 @@ extension MealScheduleView {
                         .foregroundColor(Color.appBlackColor)
                     Spacer()
                     Text("\(presentation.items.count) meals | \(presentation.calorie) calories")
+                        .foregroundColor(Color.appGrayTwo)
+                        .font(Font.mediumFont(12))
                 }
                 .padding(.bottom,10)
                 VStack(spacing: 15){
@@ -282,6 +289,8 @@ extension MealScheduleView {
                         .foregroundColor(Color.appBlackColor)
                     Spacer()
                     Text("\(presentation.items.count) meals | \(presentation.calorie) calories")
+                        .foregroundColor(Color.appGrayTwo)
+                        .font(Font.mediumFont(12))
                 }
                 .padding(.bottom,10)
                 VStack(spacing: 15){
@@ -341,8 +350,65 @@ extension MealScheduleView {
     }
     
 }
-
-
+// MARK: - Today Meal Nutritions
+extension MealScheduleView{
+    @ViewBuilder
+    private var mealNutritionsProcessView: some View {
+        if let presentation = viewModel.todayMealViewPresentation{
+            VStack{
+                HStack{
+                    Text(presentation.title)
+                        .font(Font.semiBoldFont(16))
+                        .foregroundColor(Color.appBlackColor)
+                    Spacer()
+                }
+                .padding(.bottom,10)
+                VStack(spacing: 15){
+                    ForEach(presentation.items) { item in
+                        mealNutritionsItemView(item)
+                            .shadow(color:Color.appBlackColor.opacity(0.07),radius: 40, x: 0, y:10)
+                    }
+                }
+            }
+            .padding(.horizontal,30)
+        } else {
+            EmptyView()
+        }
+    }
+    
+    @ViewBuilder
+    private func mealNutritionsItemView(_ presentation: ProcessItem) -> some View{
+        ZStack{
+            RoundedRectangle(cornerRadius: 16)
+               .foregroundColor(.white)
+            VStack{
+                HStack{
+                    Text(presentation.title)
+                        .font(Font.mediumFont(12))
+                        .foregroundColor(Color.appBlackColor)
+                    Image(presentation.icon)
+                        .resizable()
+                        .frame(width: 18,height: 18)
+                    Spacer()
+                    Text(presentation.subtitle)
+                        .font(Font.regularFont(10))
+                        .foregroundColor(Color.appGrayOne)
+                }
+                .padding(.horizontal,15)
+                ZStack(alignment: .leading) {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .foregroundColor(Color.borderColor)
+                                    .frame(height: 8)
+                                RoundedRectangle(cornerRadius: 8)
+                                    .foregroundColor(Color.brandColorOne)
+                                    .frame(width: CGFloat(presentation.percent) / 100 * UIScreen.main.bounds.width - 30, height: 8)
+                            }
+            }
+            
+        }
+        .frame(height: 64)
+    }
+}
 
 
 
