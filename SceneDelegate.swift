@@ -14,16 +14,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
+        // If using a storybomakeViewlistard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let ws = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: ws)
-        let router = MealDetailsRouter()
-       // let dataController = MealPlannerDataController()
-        let viewModel = MealDetailsViewModel(router: router)
-        let view = MealDetailsView(viewModel: viewModel)
+        let router = MealPlannerRouter()
+        let dataController = MealPlannerDataController()
+        let viewModel = MealPlannerViewModel(router: router,dataController: dataController)
+        let view = MealPlannerView(viewModel: viewModel)
         RoutingManager.shared.initialize(with: self.window!)
-        RoutingManager.shared.setRootView(view, isNavigationBarHidden: true)
+        RoutingManager.shared.setRootView(view, isNavigationBarHidden: false)
         
         
         UIFont.familyNames.forEach({ familyName in
@@ -62,4 +62,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
+
 

@@ -20,6 +20,16 @@ struct MealDetailsView: View{
                 .onAppear{
                  viewModel.initialize()
                 }
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems(leading:
+                                        Button(action: {
+                    RoutingManager.shared.pop()
+                                        }) {
+                                            Image("BackNavigationButton")
+                                                .frame(width: 32, height: 32)
+                                                .padding(.horizontal)
+                                        }
+                )
         }
     }
 }
@@ -62,12 +72,13 @@ extension MealDetailsView {
                                 .foregroundColor(.appGrayOne)
                                 .font(Font.regularFont(12))
                         }
-                        .padding(.trailing,128)
                     }
+                    .padding(.trailing,30)
+                    Spacer()
                     Button(action: {
                         // Handle
                     }){
-                        Image("Love-Icon")
+                        Image("Calories-Icon")
                             .resizable()
                           .frame(width: 32, height:32)
                        }
@@ -149,12 +160,12 @@ extension MealDetailsView{
                     Text(presentation.title)
                         .font(Font.semiBoldFont(16))
                         .foregroundColor(Color.appBlackColor)
+                    Spacer()
                     Text("6 items")
                         .font(Font.regularFont(12))
                         .foregroundColor(.appGrayOne)
                     Spacer()
                 }
-                .padding(.horizontal,30)
                 ScrollView(.horizontal){
                     HStack{
                         ForEach(presentation.items){ nextitem in
@@ -200,7 +211,8 @@ extension MealDetailsView{
                     Text(presentation.title)
                         .font(Font.semiBoldFont(16))
                         .foregroundColor(Color.appBlackColor)
-                    Text("\(presentation.items.count) items")
+                    Spacer()
+                    Text("\(presentation.items.count) steps")
                         .font(Font.regularFont(12))
                         .foregroundColor(.appGrayOne)
                     Spacer()
@@ -237,4 +249,5 @@ extension MealDetailsView{
         }
     }
 }
+
 

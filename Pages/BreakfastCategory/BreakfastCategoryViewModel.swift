@@ -110,5 +110,9 @@ final class BreakfastCategoryViewModel: ObservableObject{
         dietsViewPresentation = .fakeData
         popularViewPresentation = .fakeData
     }
+    func popularItemTapped(){
+        router.navigateToMealDetails()
+    }
     
 }
+

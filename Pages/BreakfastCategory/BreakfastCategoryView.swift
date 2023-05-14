@@ -21,6 +21,17 @@ struct BreakfastCategoryView: View{
                 .onAppear {
                     viewModel.initialize()
                 }
+                .navigationBarTitle("Breakfast", displayMode: .inline)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems(leading:
+                                        Button(action: {
+                    RoutingManager.shared.pop()
+                                        }) {
+                                            Image("BackNavigationButton")
+                                                .frame(width: 32, height: 32)
+                                                .padding(.horizontal)
+                                        }
+                )
         }
     }
 }
@@ -212,7 +223,8 @@ extension BreakfastCategoryView{
             HStack{
                 Image(presentation.image)
                     .resizable()
-                    .frame(width: 90, height: 80)
+                    .frame(width: 45, height: 46)
+                Spacer()
                 VStack{
                     HStack{
                         Text(presentation.title)
@@ -228,10 +240,18 @@ extension BreakfastCategoryView{
                     }
                 }
                 Spacer()
+                Button(action:{
+                    viewModel.popularItemTapped()
+                }){
+                    Image("Icon-Arrow")
+                        .resizable()
+                        .frame(width: 24,height: 24)
+                }
             }
             .padding(.horizontal, 30)
         }
        // .frame(minHeight: 80)
     }
 }
+
 

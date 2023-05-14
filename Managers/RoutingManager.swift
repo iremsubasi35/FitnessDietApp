@@ -33,6 +33,13 @@ final class RoutingManager {
         let hostingView = UIHostingController(rootView: view)
         topNavigationController.pushViewController(hostingView, animated: true)
     }
+    
+    func pop() {
+        guard let topNavigationController = UIApplication.topNavigationController(window.rootViewController) else {
+            return
+        }
+        topNavigationController.popViewController(animated: true)
+    }
 }
 
 extension UIApplication {

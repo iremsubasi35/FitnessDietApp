@@ -31,6 +31,17 @@ struct MealPlannerView: View {
                 .onAppear {
                     viewModel.initialize()
                 }
+                .navigationBarTitle("Meal Planner", displayMode: .inline)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems(leading:
+                                        Button(action: {
+                    RoutingManager.shared.pop()
+                                        }) {
+                                            Image("BackNavigationButton")
+                                                .frame(width: 32, height: 32)
+                                                .padding(.horizontal)
+                                        }
+                )
         }
     }
     
@@ -133,7 +144,7 @@ extension MealPlannerView {
                     .padding(.leading,20)
                     .padding(.trailing,65)
                 Button(action: {
-                    // Handle
+                    viewModel.dailyMealCheckTapped()
                 }){
                     Text("Check")
                         .frame(width: 68, height:28)
@@ -287,7 +298,7 @@ extension MealPlannerView {
                     HStack{
                         buttonView(title: "Select",
                                    backgroundColor: presentation.buttonColor) {
-                            viewModel.someThingToEatModelTapped(presentation)
+                            viewModel.someThingToEatModelTapped()
                         }
                         
 //                        Button(action: {
@@ -334,5 +345,6 @@ extension MealPlannerView {
 
     }
 }
+
 
 

@@ -79,7 +79,7 @@ extension StepByStepViewPresentation {
     static let fakeData: StepByStepViewPresentation = {
         let items: [StepByStepPresentation] = [
             StepByStepPresentation(itemId: 0, step: "Prepare all of the ingredients that needed"),
-        StepByStepPresentation(itemId: 1, step: "Prepare all of the ingredients that needed"),
+        StepByStepPresentation(itemId: 1, step: "Mix flour, sugar, salt, and baking powder"),
         StepByStepPresentation(itemId: 2, step: "In a seperate place, mix the eggs and liquid milk until blended"),
         StepByStepPresentation(itemId: 3, step: "asdsdnkjsndkabkdhbak"),
         StepByStepPresentation(itemId: 4, step: "södjnajödandkankab")
@@ -109,3 +109,4 @@ final class MealDetailsViewModel: ObservableObject{
     }
     
 }
+

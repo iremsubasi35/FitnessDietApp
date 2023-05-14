@@ -112,8 +112,12 @@ final class MealPlannerViewModel: ObservableObject {
         todayMealsViewPresentation = .fakeData
     }
     
-    func someThingToEatModelTapped(_ presentation: BoxPresentation) {
-        router.navigateToBreakfastCategory(presentation.itemId)
+    func someThingToEatModelTapped() {
+        router.navigateToBreakfastCategory()
+    }
+    func dailyMealCheckTapped(){
+        router.navigateToMealSchedule()
     }
 }
+
 
