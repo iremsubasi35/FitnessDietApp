@@ -216,10 +216,11 @@ extension MealDetailsView{
                         .font(Font.regularFont(12))
                         .foregroundColor(.appGrayOne)
                     Spacer()
-                    VStack(spacing: 15) {
-                        ForEach(presentation.items) { item in
-                            stepByStepItemView(item)
-                        }
+                }
+                .padding(.horizontal,30)
+                VStack(spacing: 15) {
+                    ForEach(presentation.items) { item in
+                        stepByStepItemView(item)
                     }
                 }
                 .padding(.horizontal,30)
